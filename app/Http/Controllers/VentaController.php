@@ -137,15 +137,22 @@ class VentaController extends Controller
                     'documentType'  => 1, // CI
                     'documentId'    => (string) ($cliente->cedula ?? '0'),
                     'phoneNumber'   => (string) ($cliente->celular ?? '0'),
-                    'email'         => $cliente->email,
+                    'email'         => $cliente->email ?? '',
                 ];
 
                 if ($data['tipo'] === 'CONTADO') {
                     $response = $this->pagoFacil->generarQr(array_merge($commonQrPayload, [
-                        'paymentNumber' => (string) $venta->id,
-                        'amount'        => (float) $venta->total,
+                        'paymentNumber' => "V{$venta->id}-" . time(),
+                        'amount'        => 0.1, // Académico
                         'currency'      => 2, // BOB
-                        'orderDetail'   => $orderDetail,
+                        'orderDetail'   => [[
+                            'serial'   => 1,
+                            'product'  => "Venta #{$venta->id} (Pago de prueba académico)",
+                            'quantity' => 1,
+                            'price'    => 0.1,
+                            'discount' => 0.0,
+                            'total'    => 0.1,
+                        ]],
                     ]));
 
                     $values = $response['values'] ?? [];
@@ -165,16 +172,16 @@ class VentaController extends Controller
                     // CREDITO: un QR por cuota
                     foreach ($cuotas as $cuota) {
                         $response = $this->pagoFacil->generarQr(array_merge($commonQrPayload, [
-                            'paymentNumber' => (string) $cuota->id,
-                            'amount'        => (float) $cuota->monto_fijo,
+                            'paymentNumber' => "C{$cuota->id}-" . time(),
+                            'amount'        => 0.1, // Académico
                             'currency'      => 2,
                             'orderDetail'   => [[
                                 'serial'   => 1,
                                 'product'  => "Cuota {$cuota->nro_cuota} de {$venta->nro_cuotas}",
                                 'quantity' => 1,
-                                'price'    => (float) $cuota->monto_fijo,
+                                'price'    => 0.1,
                                 'discount' => 0.0,
-                                'total'    => (float) $cuota->monto_fijo,
+                                'total'    => 0.1,
                             ]],
                         ]));
 

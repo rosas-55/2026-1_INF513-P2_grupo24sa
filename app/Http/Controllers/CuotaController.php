@@ -72,17 +72,17 @@ class CuotaController extends Controller
                 'documentType'  => 1,
                 'documentId'    => (string) ($cliente->cedula ?? '0'),
                 'phoneNumber'   => (string) ($cliente->celular ?? '0'),
-                'email'         => $cliente->email,
-                'paymentNumber' => (string) $cuotum->id,
-                'amount'        => (float) $cuotum->monto_fijo,
+                'email'         => $cliente->email ?? '',
+                'paymentNumber' => "C{$cuotum->id}-" . time(),
+                'amount'        => 0.1, // Académico
                 'currency'      => 2, // BOB
                 'orderDetail'   => [[
                     'serial'   => 1,
                     'product'  => "Cuota {$cuotum->nro_cuota} de {$venta->nro_cuotas} — Venta #{$venta->id}",
                     'quantity' => 1,
-                    'price'    => (float) $cuotum->monto_fijo,
+                    'price'    => 0.1,
                     'discount' => 0.0,
-                    'total'    => (float) $cuotum->monto_fijo,
+                    'total'    => 0.1,
                 ]],
             ]);
         } catch (\Throwable $e) {
