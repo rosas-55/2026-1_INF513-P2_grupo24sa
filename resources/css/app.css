@@ -1,0 +1,538 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   FASE 9: TEMAS Y ACCESIBILIDAD — CSS ÚNICO CON VARIABLES CSS
+   ───────────────────────────────────────────────────────────────────────
+   3 temas: niños / jóvenes / adultos
+   2 modos: día ☀️ / noche 🌙
+   Controles: tamaño de letra + alto contraste
+   Usa data-theme, data-modo, data-font-size, data-high-contrast en <html>
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════
+   RESET Y BASE
+   ═══════════════════════════════════════════════════════════ */
+
+@layer base {
+    /* Font size scale (ajustable vía data-font-size) */
+    :root {
+        --font-size-multiplier: 1;
+    }
+
+    html {
+        font-size: calc(100% * var(--font-size-multiplier));
+    }
+
+    /* Smooth transitions when switching themes */
+    html[data-theme],
+    html[data-modo] {
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    html[data-theme] *,
+    html[data-modo] * {
+        transition: background-color 0.3s ease, border-color 0.3s ease, color 0.2s ease;
+    }
+
+    /* Respect OS reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+        html[data-theme],
+        html[data-modo],
+        html[data-theme] *,
+        html[data-modo] * {
+            transition: none;
+        }
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+
+    /* ponytail: <option> el navegador lo pinta con fondo blanco del OS,
+       así que el color del tema noche (claro) queda invisible. Forzamos
+       un color oscuro para que SIEMPRE se lea, sin importar el tema/modo. */
+    option {
+        color: #1f2937; /* gray-800 — siempre legible sobre fondo blanco */
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TEMA: NIÑOS 🌈 — Colores vivos, juguetones, alta energía
+   ═══════════════════════════════════════════════════════════ */
+
+/* Niños · Día */
+html[data-theme="ninos"][data-modo="dia"] {
+    --color-primary:        #FF6B6B;
+    --color-primary-hover:  #EE5A5A;
+    --color-primary-light:  #FFE0E0;
+    --color-secondary:      #4ECDC4;
+    --color-secondary-hover:#3DBDB5;
+    --color-accent:         #FFE66D;
+    --color-accent-hover:   #FFD93D;
+    --color-surface:        #FFFFFF;
+    --color-surface-alt:    #FFF8F0;
+    --color-surface-hover:  #FFF0E0;
+    --color-border:         #FFD4C4;
+    --color-border-light:   #FFE8DC;
+    --color-text:           #2D1B14;
+    --color-text-secondary: #6B4E42;
+    --color-text-muted:     #9B7B6E;
+    --color-success:        #51CF66;
+    --color-warning:        #FFD43B;
+    --color-danger:         #FF6B6B;
+    --color-info:           #74C0FC;
+    --color-header-bg:      #FFF0E8;
+    --color-footer-bg:      #FFE8D6;
+    --color-nav-bg:         rgba(255,255,255,0.95);
+    --color-card-bg:        #FFFFFF;
+    --color-card-shadow:    rgba(255,107,107,0.12);
+    --radius-sm:            0.75rem;
+    --radius-md:            1rem;
+    --radius-lg:            1.25rem;
+    --font-family:          'Nunito', 'Figtree', sans-serif;
+    --shadow-sm:            0 1px 3px rgba(255,107,107,0.08);
+    --shadow-md:            0 4px 14px rgba(255,107,107,0.12);
+    --shadow-lg:            0 8px 30px rgba(255,107,107,0.15);
+}
+
+/* Niños · Noche */
+html[data-theme="ninos"][data-modo="noche"] {
+    --color-primary:        #FF8585;
+    --color-primary-hover:  #FF7070;
+    --color-primary-light:  #4A2020;
+    --color-secondary:      #6EDCD6;
+    --color-secondary-hover:#5ECDC7;
+    --color-accent:         #FFEB8A;
+    --color-accent-hover:   #FFE566;
+    --color-surface:        #1E1418;
+    --color-surface-alt:    #261A20;
+    --color-surface-hover:  #2E2028;
+    --color-border:         #3D2830;
+    --color-border-light:   #2E2028;
+    --color-text:           #F5E6EC;
+    --color-text-secondary: #D4BCC6;
+    --color-text-muted:     #9B7B86;
+    --color-success:        #69DB7C;
+    --color-warning:        #FFE066;
+    --color-danger:         #FF8585;
+    --color-info:           #8CD4FC;
+    --color-header-bg:      #1E1418;
+    --color-footer-bg:      #1A1014;
+    --color-nav-bg:         rgba(30,20,24,0.95);
+    --color-card-bg:        #261A20;
+    --color-card-shadow:    rgba(0,0,0,0.3);
+    --radius-sm:            0.75rem;
+    --radius-md:            1rem;
+    --radius-lg:            1.25rem;
+    --font-family:          'Nunito', 'Figtree', sans-serif;
+    --shadow-sm:            0 1px 3px rgba(0,0,0,0.2);
+    --shadow-md:            0 4px 14px rgba(0,0,0,0.3);
+    --shadow-lg:            0 8px 30px rgba(0,0,0,0.4);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TEMA: JÓVENES 🎯 — Moderno, vibrante, alta saturación
+   ═══════════════════════════════════════════════════════════ */
+
+/* Jóvenes · Día */
+html[data-theme="jovenes"][data-modo="dia"] {
+    --color-primary:        #6366F1;
+    --color-primary-hover:  #5558E6;
+    --color-primary-light:  #E0E0FF;
+    --color-secondary:      #EC4899;
+    --color-secondary-hover:#DB2785;
+    --color-accent:         #10B981;
+    --color-accent-hover:   #0D9F6E;
+    --color-surface:        #FFFFFF;
+    --color-surface-alt:    #F8F7FF;
+    --color-surface-hover:  #F0EFFF;
+    --color-border:         #D4D0F0;
+    --color-border-light:   #E8E4F8;
+    --color-text:           #1A1530;
+    --color-text-secondary: #4A4068;
+    --color-text-muted:     #8B7EAA;
+    --color-success:        #10B981;
+    --color-warning:        #F59E0B;
+    --color-danger:         #EF4444;
+    --color-info:           #6366F1;
+    --color-header-bg:      #F8F7FF;
+    --color-footer-bg:      #F0EFFF;
+    --color-nav-bg:         rgba(255,255,255,0.95);
+    --color-card-bg:        #FFFFFF;
+    --color-card-shadow:    rgba(99,102,241,0.10);
+    --radius-sm:            0.5rem;
+    --radius-md:            0.75rem;
+    --radius-lg:            1rem;
+    --font-family:          'Inter', 'Figtree', sans-serif;
+    --shadow-sm:            0 1px 2px rgba(99,102,241,0.06);
+    --shadow-md:            0 4px 12px rgba(99,102,241,0.10);
+    --shadow-lg:            0 8px 24px rgba(99,102,241,0.12);
+}
+
+/* Jóvenes · Noche */
+html[data-theme="jovenes"][data-modo="noche"] {
+    --color-primary:        #818CF8;
+    --color-primary-hover:  #7078F0;
+    --color-primary-light:  #1E1B4B;
+    --color-secondary:      #F472B6;
+    --color-secondary-hover:#E864A8;
+    --color-accent:         #34D399;
+    --color-accent-hover:   #2CC58C;
+    --color-surface:        #0F0D1A;
+    --color-surface-alt:    #16132A;
+    --color-surface-hover:  #1E1A38;
+    --color-border:         #2D2850;
+    --color-border-light:   #1E1A38;
+    --color-text:           #EDE9F8;
+    --color-text-secondary: #B8B0D8;
+    --color-text-muted:     #786EAA;
+    --color-success:        #34D399;
+    --color-warning:        #FBBF24;
+    --color-danger:         #F87171;
+    --color-info:           #818CF8;
+    --color-header-bg:      #0F0D1A;
+    --color-footer-bg:      #0A0814;
+    --color-nav-bg:         rgba(15,13,26,0.95);
+    --color-card-bg:        #16132A;
+    --color-card-shadow:    rgba(0,0,0,0.4);
+    --radius-sm:            0.5rem;
+    --radius-md:            0.75rem;
+    --radius-lg:            1rem;
+    --font-family:          'Inter', 'Figtree', sans-serif;
+    --shadow-sm:            0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md:            0 4px 12px rgba(0,0,0,0.4);
+    --shadow-lg:            0 8px 24px rgba(0,0,0,0.5);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TEMA: ADULTOS 🏛️ — Profesional, sobrio, elegante
+   ═══════════════════════════════════════════════════════════ */
+
+/* Adultos · Día */
+html[data-theme="adultos"][data-modo="dia"] {
+    --color-primary:        #1E3A5F;
+    --color-primary-hover:  #162D4A;
+    --color-primary-light:  #E0E8F0;
+    --color-secondary:      #5B7FA5;
+    --color-secondary-hover:#4A6D91;
+    --color-accent:         #C9A96E;
+    --color-accent-hover:   #B8944F;
+    --color-surface:        #FFFFFF;
+    --color-surface-alt:    #F5F7FA;
+    --color-surface-hover:  #EDF1F5;
+    --color-border:         #D0D8E0;
+    --color-border-light:   #E4EAF0;
+    --color-text:           #1A1E24;
+    --color-text-secondary: #4A5568;
+    --color-text-muted:     #8A94A6;
+    --color-success:        #38A169;
+    --color-warning:        #D69E2E;
+    --color-danger:         #E53E3E;
+    --color-info:           #3182CE;
+    --color-header-bg:      #F5F7FA;
+    --color-footer-bg:      #EDF1F5;
+    --color-nav-bg:         rgba(255,255,255,0.97);
+    --color-card-bg:        #FFFFFF;
+    --color-card-shadow:    rgba(30,58,95,0.08);
+    --radius-sm:            0.375rem;
+    --radius-md:            0.5rem;
+    --radius-lg:            0.75rem;
+    --font-family:          'Lora', 'Figtree', serif;
+    --shadow-sm:            0 1px 2px rgba(30,58,95,0.04);
+    --shadow-md:            0 4px 8px rgba(30,58,95,0.06);
+    --shadow-lg:            0 8px 20px rgba(30,58,95,0.08);
+}
+
+/* Adultos · Noche */
+html[data-theme="adultos"][data-modo="noche"] {
+    --color-primary:        #4A7BB5;
+    --color-primary-hover:  #3D6A9F;
+    --color-primary-light:  #1A2535;
+    --color-secondary:      #7BA3C6;
+    --color-secondary-hover:#6A92B5;
+    --color-accent:         #D4B87A;
+    --color-accent-hover:   #C9A96E;
+    --color-surface:        #121820;
+    --color-surface-alt:    #1A222C;
+    --color-surface-hover:  #222C38;
+    --color-border:         #2D3845;
+    --color-border-light:   #1E2834;
+    --color-text:           #E8ECF0;
+    --color-text-secondary: #A0AEC0;
+    --color-text-muted:     #6B7C90;
+    --color-success:        #48BB78;
+    --color-warning:        #ECC94B;
+    --color-danger:         #FC8181;
+    --color-info:           #63B3ED;
+    --color-header-bg:      #121820;
+    --color-footer-bg:      #0E141A;
+    --color-nav-bg:         rgba(18,24,32,0.97);
+    --color-card-bg:        #1A222C;
+    --color-card-shadow:    rgba(0,0,0,0.3);
+    --radius-sm:            0.375rem;
+    --radius-md:            0.5rem;
+    --radius-lg:            0.75rem;
+    --font-family:          'Lora', 'Figtree', serif;
+    --shadow-sm:            0 1px 2px rgba(0,0,0,0.2);
+    --shadow-md:            0 4px 8px rgba(0,0,0,0.3);
+    --shadow-lg:            0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MODO ALTO CONTRASTE — Sobrescribe colores para WCAG AAA
+   ═══════════════════════════════════════════════════════════ */
+
+html[data-high-contrast="true"][data-modo="dia"] {
+    --color-text:           #000000;
+    --color-text-secondary: #1A1A1A;
+    --color-text-muted:     #333333;
+    --color-surface:        #FFFFFF;
+    --color-surface-alt:    #F0F0F0;
+    --color-border:         #000000;
+    --color-border-light:   #333333;
+}
+
+html[data-high-contrast="true"][data-modo="noche"] {
+    --color-text:           #FFFFFF;
+    --color-text-secondary: #E0E0E0;
+    --color-text-muted:     #C0C0C0;
+    --color-surface:        #000000;
+    --color-surface-alt:    #1A1A1A;
+    --color-border:         #FFFFFF;
+    --color-border-light:   #666666;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TAMAÑOS DE LETRA (data-font-size)
+   ═══════════════════════════════════════════════════════════ */
+
+html[data-font-size="small"]  { --font-size-multiplier: 0.85; }
+html[data-font-size="normal"] { --font-size-multiplier: 1;    }
+html[data-font-size="large"]  { --font-size-multiplier: 1.2;  }
+html[data-font-size="xlarge"] { --font-size-multiplier: 1.4;  }
+
+/* ═══════════════════════════════════════════════════════════
+   COMPONENTES GLOBALES — Usan variables CSS
+   ═══════════════════════════════════════════════════════════ */
+
+@layer components {
+    body {
+        background-color: var(--color-surface);
+        color: var(--color-text);
+        font-family: var(--font-family);
+    }
+
+    /* --- Navbar --- */
+    .theme-nav {
+        background-color: var(--color-nav-bg);
+        border-color: var(--color-border-light);
+        backdrop-filter: blur(12px);
+        /* FIX: sticky nav — siempre visible al hacer scroll */
+        position: sticky;
+        top: 0;
+        z-index: 30;
+    }
+
+    /* Solo los links de navegación heredan el color del tema */
+    .theme-nav a,
+    .theme-nav button {
+        color: var(--color-text-secondary);
+        transition: color 0.15s;
+    }
+    .theme-nav a:hover,
+    .theme-nav button:hover {
+        color: var(--color-primary);
+    }
+    .theme-nav a.active {
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+    }
+
+    /* FIX: botón de usuario — hover con fondo del tema en lugar de JS inline */
+    .theme-nav .user-btn:hover {
+        background-color: var(--color-surface-hover) !important;
+    }
+
+    /* ── Fila 2 del nav: contenedor scrollable para muchos módulos ──────────
+       overflow-x-auto permite scroll horizontal sin romper el layout.
+       La barra de scroll se oculta visualmente pero sigue siendo funcional
+       (accesible con touch/trackpad). ──────────────────────────────────── */
+    .nav-menu-row {
+        display: flex;
+        scrollbar-width: none;       /* Firefox */
+        -ms-overflow-style: none;    /* IE 11 */
+    }
+    .nav-menu-row::-webkit-scrollbar {
+        display: none;               /* Chrome / Safari */
+    }
+
+
+    /* --- Header --- */
+    .theme-header {
+        background-color: var(--color-header-bg);
+    }
+
+    /* --- Cards --- */
+    .theme-card {
+        background-color: var(--color-card-bg);
+        box-shadow: var(--shadow-md);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border-light);
+    }
+
+    .theme-card:hover {
+        box-shadow: var(--shadow-lg);
+    }
+
+    /* --- Buttons --- */
+    .btn-primary {
+        background-color: var(--color-primary);
+        color: #FFFFFF;
+        border-radius: var(--radius-sm);
+        padding: 0.5rem 1.25rem;
+        font-weight: 600;
+        transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        box-shadow: var(--shadow-sm);
+    }
+    .btn-primary:hover {
+        background-color: var(--color-primary-hover);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+        background-color: var(--color-secondary);
+        color: #FFFFFF;
+        border-radius: var(--radius-sm);
+        padding: 0.5rem 1.25rem;
+        font-weight: 600;
+        transition: background-color 0.2s, box-shadow 0.2s;
+    }
+    .btn-secondary:hover {
+        background-color: var(--color-secondary-hover);
+    }
+
+    .btn-outline {
+        background-color: transparent;
+        color: var(--color-primary);
+        border: 2px solid var(--color-primary);
+        border-radius: var(--radius-sm);
+        padding: 0.5rem 1.25rem;
+        font-weight: 600;
+        transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .btn-outline:hover {
+        background-color: var(--color-primary-light);
+    }
+
+    /* --- Form inputs --- */
+    .theme-input {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        color: var(--color-text);
+        border-radius: var(--radius-sm);
+        padding: 0.625rem 0.875rem;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .theme-input:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px var(--color-primary-light);
+        outline: none;
+    }
+    .theme-input::placeholder {
+        color: var(--color-text-muted);
+    }
+
+    /* --- Table --- */
+    .theme-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+    .theme-table th {
+        background-color: var(--color-surface-alt);
+        color: var(--color-text-secondary);
+        font-weight: 600;
+        text-align: left;
+        padding: 0.75rem 1rem;
+        border-bottom: 2px solid var(--color-border);
+    }
+    .theme-table td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--color-border-light);
+        color: var(--color-text);
+    }
+    .theme-table tr:hover td {
+        background-color: var(--color-surface-hover);
+    }
+
+    /* --- Footer --- */
+    .theme-footer {
+        background-color: var(--color-footer-bg);
+        border-top: 1px solid var(--color-border-light);
+        color: var(--color-text-muted);
+        font-size: 0.875rem;
+    }
+
+    /* --- Badges --- */
+    .badge-primary {
+        background-color: var(--color-primary-light);
+        color: var(--color-primary);
+        border-radius: var(--radius-sm);
+        padding: 0.125rem 0.625rem;
+        font-weight: 600;
+        font-size: 0.75rem;
+    }
+
+    /* --- Page wrapper --- */
+    .theme-page {
+        background-color: var(--color-surface-alt);
+        min-height: 100vh;
+    }
+
+    /* --- Section title --- */
+    .theme-section-title {
+        color: var(--color-text);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }
+
+    /* --- Divider --- */
+    .theme-divider {
+        border-color: var(--color-border-light);
+    }
+
+    /* --- Alerts --- */
+    .alert-success {
+        background-color: var(--color-success);
+        color: #FFFFFF;
+    }
+    .alert-warning {
+        background-color: var(--color-warning);
+        color: #1A1A1A;
+    }
+    .alert-danger {
+        background-color: var(--color-danger);
+        color: #FFFFFF;
+    }
+    .alert-info {
+        background-color: var(--color-info);
+        color: #FFFFFF;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   UTILIDADES
+   ═══════════════════════════════════════════════════════════ */
+
+@layer utilities {
+    .text-primary      { color: var(--color-primary); }
+    .text-secondary    { color: var(--color-text-secondary); }
+    .text-muted        { color: var(--color-text-muted); }
+    .bg-surface        { background-color: var(--color-surface); }
+    .bg-surface-alt    { background-color: var(--color-surface-alt); }
+    .border-theme      { border-color: var(--color-border); }
+}
