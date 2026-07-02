@@ -4,7 +4,7 @@
 
 # 1. Clonar el repo (solo la primera vez)
 cd ~
-git clone https://github.com/TU_USUARIO/TU_REPO.git proyecto2_laravel
+git clone https://github.com/rosas-55/2026-1_INF513-P2_grupo24sa.git proyecto2_laravel
 
 # 2. Instalar dependencias PHP  (NO se necesita npm/node en el servidor)
 #    Los assets JS/CSS ya vienen compilados en public/build/ desde git
@@ -13,7 +13,7 @@ composer install --no-dev --optimize-autoloader
 
 # 3. Configurar entorno
 cp .env.example .env
-nano .env
+vi .env
 # Editar: APP_URL, DB_HOST, DB_DATABASE, DB_USERNAME, DB_PASSWORD (dejar APP_KEY vacio)
 php artisan key:generate
 
