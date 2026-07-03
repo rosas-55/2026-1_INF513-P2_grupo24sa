@@ -51,11 +51,13 @@ class InventarioController extends Controller
             'tipo_movimiento' => 'required|in:ENTRADA,SALIDA,AJUSTE',
             'observacion'    => 'nullable|string',
             'costo_unitario' => 'required|numeric|min:0',
+            'fecha'          => 'nullable|date',
         ]);
 
         $data['valor_total'] = $data['cantidad'] * $data['costo_unitario'];
+        $fecha = isset($data['fecha']) ? \Carbon\Carbon::parse($data['fecha']) : now();
 
-        Inventario::create(array_merge($data, ['fecha' => now()]));
+        Inventario::create(array_merge($data, ['fecha' => $fecha]));
 
         // Actualizar stock del insumo
         $insumo = Insumo::find($data['insumo_id']);

@@ -44,10 +44,12 @@ class ProduccionController extends Controller
         $data = $request->validate([
             'receta_id'           => 'required|integer|exists:receta,id',
             'cantidad_producida'  => 'required|numeric|min:0.01',
+            'fecha'               => 'nullable|date',
         ]);
 
         DB::transaction(function () use ($data) {
-            $produccion = Produccion::create(array_merge($data, ['fecha' => now()]));
+            $fecha = isset($data['fecha']) ? \Carbon\Carbon::parse($data['fecha']) : now();
+            $produccion = Produccion::create(array_merge($data, ['fecha' => $fecha]));
 
             // Incrementar stock del producto asociado a la receta
             $receta = Receta::with('producto')->find($data['receta_id']);

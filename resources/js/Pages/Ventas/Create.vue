@@ -17,6 +17,7 @@ const form = ref({
     tipo: 'CONTADO',
     nro_cuotas: 0,
     interes: 0,
+    fecha: '',
     detalles: [{ producto_id: '', cantidad: 1 }],
 });
 const submitting = ref(false);
@@ -208,6 +209,13 @@ function formatInt(amount) {
                             <div>
                                 <label for="venta-interes" class="block text-sm font-medium text-secondary">Interés (Bs.)</label>
                                 <input id="venta-interes" v-model.number="form.interes" type="number" step="0.01" class="mt-1 w-full theme-input" />
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="venta-fecha" class="block text-sm font-medium text-secondary">Fecha (Opcional)</label>
+                                <input id="venta-fecha" v-model="form.fecha" type="datetime-local" class="mt-1 w-full theme-input" />
                             </div>
                         </div>
 

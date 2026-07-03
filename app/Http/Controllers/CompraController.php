@@ -53,6 +53,7 @@ class CompraController extends Controller
             'detalles.*.insumo_id'       => 'required|integer|exists:insumo,id',
             'detalles.*.cantidad'        => 'required|numeric|min:0.01',
             'detalles.*.precio_unitario' => 'required|numeric|min:0',
+            'fecha'                      => 'nullable|date',
         ]);
 
         DB::transaction(function () use ($data) {
@@ -62,7 +63,7 @@ class CompraController extends Controller
                 'proveedor_id' => $data['proveedor_id'],
                 'estado'       => $data['estado'],
                 'total'        => $total,
-                'fecha'        => now(),
+                'fecha'        => isset($data['fecha']) ? \Carbon\Carbon::parse($data['fecha']) : now(),
             ]);
 
             foreach ($data['detalles'] as $det) {

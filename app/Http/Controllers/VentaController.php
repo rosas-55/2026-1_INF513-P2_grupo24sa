@@ -69,6 +69,7 @@ class VentaController extends Controller
             'detalles'     => 'required|array|min:1',
             'detalles.*.producto_id' => 'required|integer|exists:producto,id',
             'detalles.*.cantidad'    => 'required|numeric|min:0.01',
+            'fecha'                  => 'nullable|date',
         ]);
 
         DB::transaction(function () use ($data, $request) {
@@ -342,7 +343,7 @@ class VentaController extends Controller
             'nro_cuotas'  => $nroCuotas,
             'interes'     => $data['interes'] ?? 0,
             'total'       => $total,
-            'fecha'       => now(),
+            'fecha'       => isset($data['fecha']) ? \Carbon\Carbon::parse($data['fecha']) : now(),
         ]);
 
         foreach ($detProc as $det) {
