@@ -37,7 +37,7 @@ class VentaController extends Controller
             $query->where('estado', $request->estado);
         }
 
-        $ventas = $query->orderBy('fecha', 'desc')->paginate(10)->withQueryString();
+        $ventas = $query->orderBy('id', 'desc')->paginate(10)->withQueryString();
         $clientes = User::select('id', 'name')->orderBy('name')->get();
 
         return Inertia::render('Ventas/Index', [
