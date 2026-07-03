@@ -78,6 +78,18 @@ function filtrar(extra = {}) {
     const params = { estado: props.filters?.estado || '', venta_id: props.filters?.venta_id || '', ...extra };
     window.location.href = route('cuotas.index') + '?' + new URLSearchParams(params).toString();
 }
+
+function formatInt(amount) {
+    return Math.round(amount || 0);
+}
+
+function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const datePart = dateStr.split('T')[0].split(' ')[0];
+    const parts = datePart.split('-');
+    if (parts.length === 3) return `${parseInt(parts[2], 10)}/${parts[1]}/${parts[0]}`;
+    return dateStr;
+}
 </script>
 
 <template>
@@ -135,8 +147,8 @@ function filtrar(extra = {}) {
                             <td class="px-4 py-3 font-medium" :style="{ color: 'var(--color-text)' }">#{{ c.venta_id }}</td>
                             <td v-if="!esCliente" class="px-4 py-3" :style="{ color: 'var(--color-text)' }">{{ c.venta?.cliente?.name }}</td>
                             <td class="px-4 py-3" :style="{ color: 'var(--color-text)' }">{{ c.nro_cuota }}</td>
-                            <td class="px-4 py-3 font-semibold" :style="{ color: 'var(--color-text)' }">Bs. {{ Number(c.monto_fijo).toFixed(2) }}</td>
-                            <td class="px-4 py-3" :style="{ color: 'var(--color-text-muted)' }">{{ c.fecha_vencimiento }}</td>
+                            <td class="px-4 py-3 font-semibold" :style="{ color: 'var(--color-text)' }">Bs. {{ formatInt(c.monto_fijo) }}</td>
+                            <td class="px-4 py-3" :style="{ color: 'var(--color-text-muted)' }">{{ formatDate(c.fecha_vencimiento) }}</td>
                             <td class="px-4 py-3">
                                 <span class="inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold" :class="estadoClase(c.estado)">
                                     {{ c.estado }}
@@ -223,7 +235,7 @@ function filtrar(extra = {}) {
                         <div class="text-center mb-5 w-full">
                             <h2 class="text-xl font-bold" :style="{ color: 'var(--color-text)' }">{{ qrData.label }}</h2>
                             <div class="text-4xl font-black mt-1 tracking-tight" :style="{ color: 'var(--color-primary)' }">
-                                Bs. {{ Number(qrData.amount).toFixed(2) }}
+                                Bs. {{ formatInt(qrData.amount) }}
                             </div>
                         </div>
 
