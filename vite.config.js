@@ -24,8 +24,4 @@ export default defineConfig(({ command }) => ({
             },
         }),
     ],
-    build: {
-        outDir: 'public/build',
-        emptyOutDir: true,
-    },
 }));
