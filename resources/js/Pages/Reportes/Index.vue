@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import { Head, router } from '@inertiajs/vue3';
+import { computed, ref } from 'vue';
 
 const props = defineProps({
     datos_visitas: Array,
@@ -9,6 +9,31 @@ const props = defineProps({
     kpis: Object,
     productos_mas_vendidos: Array,
     ventas_recientes: Array,
+    filtros: Object,
+});
+
+const filtros = ref({
+    start_date: props.filtros?.start_date || '',
+    end_date: props.filtros?.end_date || ''
+});
+
+function aplicarFiltros() {
+    router.get(route('reportes.index'), filtros.value, { preserveState: true });
+}
+
+function resetFiltros() {
+    filtros.value.start_date = '';
+    filtros.value.end_date = '';
+    router.get(route('reportes.index'));
+}
+
+const pdfUrl = computed(() => {
+    let url = route('reportes.pdf');
+    const params = new URLSearchParams();
+    if (filtros.value.start_date) params.append('start_date', filtros.value.start_date);
+    if (filtros.value.end_date) params.append('end_date', filtros.value.end_date);
+    const qs = params.toString();
+    return qs ? `${url}?${qs}` : url;
 });
 
 function formatCurrency(amount) {
@@ -21,6 +46,43 @@ function formatDate(dateString) {
         year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
     });
 }
+
+
+function downloadCSV() {
+    let csv = "REPORTE GENERAL\n\n";
+    
+    // KPIs
+    csv += "KPI,Valor\n";
+    csv += `Ingresos por Ventas,${props.kpis.total_ventas || 0}\n`;
+    csv += `Gastos en Compras,${props.kpis.total_compras || 0}\n`;
+    csv += `Clientes Registrados,${props.kpis.clientes_registrados || 0}\n`;
+    csv += `Productos Activos,${props.kpis.productos_activos || 0}\n\n`;
+    
+    // Productos Más Vendidos
+    csv += "PRODUCTOS MAS VENDIDOS\n";
+    csv += "Producto,Unidades Vendidas,Ingresos\n";
+    props.productos_mas_vendidos.forEach(p => {
+        csv += `"${p.nombre}",${p.total_vendido},${p.ingresos}\n`;
+    });
+    csv += "\n";
+    
+    // Ventas Recientes
+    csv += "VENTAS RECIENTES\n";
+    csv += "Fecha,Cliente,Tipo,Total,Estado\n";
+    props.ventas_recientes.forEach(v => {
+        const cliente = v.cliente ? v.cliente.name : 'Consumidor Final';
+        csv += `"${v.fecha}","${cliente}","${v.tipo}",${v.total},"${v.estado}"\n`;
+    });
+    
+    const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' }); // BOM for Excel
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `reporte_${new Date().toISOString().slice(0,10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 </script>
 
 <template>
@@ -28,11 +90,33 @@ function formatDate(dateString) {
         <Head title="Reportes y Estadísticas" />
 
         <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
                 <h1 class="text-3xl font-bold theme-section-title">Dashboard de Reportes</h1>
-                <div class="bg-[var(--color-primary-light)] text-[var(--color-primary)] px-4 py-2 rounded-lg font-semibold flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                    Visitas Totales: {{ total_visitas }}
+                
+                <div class="flex flex-col sm:flex-row items-center gap-3 w-full xl:w-auto justify-end">
+                    <!-- Filtros de fecha -->
+                    <div class="flex flex-wrap items-center gap-2 print:hidden bg-[var(--color-surface-alt)] p-2 rounded-lg border" :style="{ borderColor: 'var(--color-border-light)' }">
+                        <input type="date" v-model="filtros.start_date" class="theme-input text-sm py-1.5" title="Fecha inicio">
+                        <span class="text-secondary text-sm">a</span>
+                        <input type="date" v-model="filtros.end_date" class="theme-input text-sm py-1.5" title="Fecha fin">
+                        <button @click="aplicarFiltros" class="bg-[var(--color-primary)] text-white px-3 py-1.5 rounded text-sm hover:opacity-90 font-medium">Filtrar</button>
+                        <button @click="resetFiltros" class="bg-gray-500 text-white px-3 py-1.5 rounded text-sm hover:opacity-90 font-medium" v-if="filtros.start_date || filtros.end_date">Limpiar</button>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <div class="bg-[var(--color-primary-light)] text-[var(--color-primary)] px-4 py-2 rounded-lg font-semibold flex items-center gap-2 print:hidden">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                            Visitas: {{ total_visitas }}
+                        </div>
+                        <button @click="downloadCSV" class="btn-secondary flex items-center gap-2 print:hidden shrink-0" title="Descargar como CSV (Excel)">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            CSV
+                        </button>
+                        <a :href="pdfUrl" target="_blank" class="btn-primary flex items-center gap-2 print:hidden shrink-0" title="Descargar reporte en PDF generado">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                            PDF
+                        </a>
+                    </div>
                 </div>
             </div>
 

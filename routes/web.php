@@ -163,6 +163,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/api/tema', [TemaController::class, 'show'])->name('tema.show');
     Route::patch('/api/tema', [TemaController::class, 'update'])->name('tema.update');
     
+    // PDF Reportes
+    Route::get('/reportes/pdf', [\App\Http\Controllers\ReporteController::class, 'exportPdf'])->name('reportes.pdf');
+    
     Route::get('/api/debug-menu', function(\Illuminate\Http\Request $request) {
         $user = \App\Models\User::where('name', 'Propietario')->first();
         if (!$user) return response()->json(['error' => 'not found']);

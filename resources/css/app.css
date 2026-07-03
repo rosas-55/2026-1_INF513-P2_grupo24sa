@@ -536,3 +536,29 @@ html[data-font-size="xlarge"] { --font-size-multiplier: 1.4;  }
     .bg-surface-alt    { background-color: var(--color-surface-alt); }
     .border-theme      { border-color: var(--color-border); }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   ESTILOS DE IMPRESIÓN (PDF)
+   ═══════════════════════════════════════════════════════════ */
+@media print {
+    body {
+        background-color: white !important;
+        color: black !important;
+    }
+    .theme-nav, .theme-footer, .print\:hidden {
+        display: none !important;
+    }
+    .theme-page {
+        background-color: white !important;
+        min-height: auto;
+    }
+    .theme-card {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        break-inside: avoid;
+    }
+    * {
+        print-color-adjust: exact !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+}

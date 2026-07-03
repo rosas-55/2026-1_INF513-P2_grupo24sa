@@ -5,6 +5,18 @@ import { Head } from '@inertiajs/vue3';
 defineProps({
     venta: Object
 });
+
+function formatInt(amount) {
+    return Math.round(amount || 0);
+}
+
+function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const datePart = dateStr.split('T')[0].split(' ')[0];
+    const parts = datePart.split('-');
+    if (parts.length === 3) return `${parseInt(parts[2], 10)}/${parts[1]}/${parts[0]}`;
+    return dateStr;
+}
 </script>
 
 <template>
@@ -25,7 +37,7 @@ defineProps({
                     </div>
                     <div>
                         <span class="block text-xs font-semibold text-muted uppercase tracking-wider mb-1">Fecha</span>
-                        <div class="font-medium" :style="{ color: 'var(--color-text)' }">{{ venta.fecha }}</div>
+                        <div class="font-medium" :style="{ color: 'var(--color-text)' }">{{ formatDate(venta.fecha) }}</div>
                     </div>
                     <div>
                         <span class="block text-xs font-semibold text-muted uppercase tracking-wider mb-1">Tipo</span>
@@ -41,8 +53,8 @@ defineProps({
                     </div>
                     <div>
                         <span class="block text-xs font-semibold text-muted uppercase tracking-wider mb-1">Total (Bs.)</span>
-                        <div class="font-bold text-lg text-primary">Bs. {{ Number(venta.total).toFixed(2) }}</div>
-                        <div class="text-xs text-muted" v-if="venta.interes > 0">(Incluye Bs. {{ Number(venta.interes).toFixed(2) }} de interés)</div>
+                        <div class="font-bold text-lg text-primary">Bs. {{ formatInt(venta.total) }}</div>
+                        <div class="text-xs text-muted" v-if="venta.interes > 0">(Incluye Bs. {{ formatInt(venta.interes) }} de interés)</div>
                     </div>
                 </div>
             </div>
@@ -62,8 +74,8 @@ defineProps({
                         <tr v-for="d in venta.detalles" :key="d.id">
                             <td class="font-medium">{{ d.producto?.nombre }}</td>
                             <td class="text-center">{{ d.cantidad }}</td>
-                            <td class="text-right">Bs. {{ Number(d.precio_unitario).toFixed(2) }}</td>
-                            <td class="text-right font-semibold">Bs. {{ Number(d.sub_total).toFixed(2) }}</td>
+                            <td class="text-right">Bs. {{ formatInt(d.precio_unitario) }}</td>
+                            <td class="text-right font-semibold">Bs. {{ formatInt(d.sub_total) }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -84,8 +96,8 @@ defineProps({
                         <tbody>
                             <tr v-for="c in venta.cuotas" :key="c.id">
                                 <td class="font-medium text-primary">Cuota {{ c.nro_cuota }}</td>
-                                <td class="text-right font-semibold">Bs. {{ Number(c.monto_fijo).toFixed(2) }}</td>
-                                <td>{{ c.fecha_vencimiento }}</td>
+                                <td class="text-right font-semibold">Bs. {{ formatInt(c.monto_fijo) }}</td>
+                                <td>{{ formatDate(c.fecha_vencimiento) }}</td>
                                 <td>
                                     <span class="badge-primary" :class="{'alert-success': c.estado === 'PAGADO', 'alert-warning': c.estado === 'PENDIENTE', 'alert-danger': c.estado === 'VENCIDO'}">
                                         {{ c.estado }}

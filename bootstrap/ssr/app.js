@@ -696,14 +696,14 @@ createInertiaApp({
 		"./Pages/Recetas/Create.vue": () => import("./assets/Create-wRN8-HFa.js"),
 		"./Pages/Recetas/Edit.vue": () => import("./assets/Edit-14LkYlrx.js"),
 		"./Pages/Recetas/Index.vue": () => import("./assets/Index-N1FbLDgJ.js"),
-		"./Pages/Reportes/Index.vue": () => import("./assets/Index-BrvVHQrK2.js"),
+		"./Pages/Reportes/Index.vue": () => import("./assets/Index-tZGA913F2.js"),
 		"./Pages/Seguridad/Index.vue": () => import("./assets/Index-BkJocM1z.js"),
 		"./Pages/Usuarios/Create.vue": () => import("./assets/Create-B41dffr1.js"),
 		"./Pages/Usuarios/Edit.vue": () => import("./assets/Edit-BKz3CI7v.js"),
 		"./Pages/Usuarios/Index.vue": () => import("./assets/Index-10G2nuPy2.js"),
 		"./Pages/Ventas/Create.vue": () => import("./assets/Create-DjTHSRRJ.js"),
-		"./Pages/Ventas/Index.vue": () => import("./assets/Index-DCF6ts2k.js"),
-		"./Pages/Ventas/Show.vue": () => import("./assets/Show-CXW1DAat.js"),
+		"./Pages/Ventas/Index.vue": () => import("./assets/Index-Dk3jaTar.js"),
+		"./Pages/Ventas/Show.vue": () => import("./assets/Show-mcmKcGJ8.js"),
 		"./Pages/Welcome.vue": () => import("./assets/Welcome-Cfrki-DF.js")
 	})),
 	setup({ el, App, props, plugin }) {

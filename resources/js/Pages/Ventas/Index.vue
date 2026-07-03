@@ -15,6 +15,18 @@ function destroy(id) {
         form.delete(route('ventas.destroy', id));
     }
 }
+
+function formatInt(amount) {
+    return Math.round(amount || 0);
+}
+
+function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const datePart = dateStr.split('T')[0].split(' ')[0];
+    const parts = datePart.split('-');
+    if (parts.length === 3) return `${parseInt(parts[2], 10)}/${parts[1]}/${parts[0]}`;
+    return dateStr;
+}
 </script>
 
 <template>
@@ -62,13 +74,13 @@ function destroy(id) {
                             <td class="font-medium text-primary">#{{ v.id }}</td>
                             <td>{{ v.cliente?.name }}</td>
                             <td>{{ v.tipo }}</td>
-                            <td class="font-semibold">Bs. {{ Number(v.total).toFixed(2) }}</td>
+                            <td class="font-semibold">Bs. {{ formatInt(v.total) }}</td>
                             <td>
                                 <span class="badge-primary" :class="{'alert-success px-2 py-1 rounded': v.estado === 'PAGADA', 'alert-warning px-2 py-1 rounded': v.estado === 'PENDIENTE'}">
                                     {{ v.estado }}
                                 </span>
                             </td>
-                            <td class="text-muted">{{ v.fecha }}</td>
+                            <td class="text-muted">{{ formatDate(v.fecha) }}</td>
                             <td class="text-right space-x-3">
                                 <Link :href="route('ventas.show', v.id)" class="font-medium text-primary hover:underline">Ver</Link>
                                 <button v-if="v.estado === 'PENDIENTE'" @click="destroy(v.id)" class="font-medium alert-danger px-2 py-1 rounded hover:opacity-80 transition-opacity">
