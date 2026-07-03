@@ -147,7 +147,7 @@ function formatDate(dateStr) {
                             <td class="px-4 py-3 font-medium" :style="{ color: 'var(--color-text)' }">#{{ c.venta_id }}</td>
                             <td v-if="!esCliente" class="px-4 py-3" :style="{ color: 'var(--color-text)' }">{{ c.venta?.cliente?.name }}</td>
                             <td class="px-4 py-3" :style="{ color: 'var(--color-text)' }">{{ c.nro_cuota }}</td>
-                            <td class="px-4 py-3 font-semibold" :style="{ color: 'var(--color-text)' }">Bs. {{ formatInt(c.monto_fijo) }}</td>
+                            <td class="px-4 py-3 font-semibold" :style="{ color: 'var(--color-text)' }">Bs. {{ Number(c.monto_fijo).toFixed(2) }}</td>
                             <td class="px-4 py-3" :style="{ color: 'var(--color-text-muted)' }">{{ formatDate(c.fecha_vencimiento) }}</td>
                             <td class="px-4 py-3">
                                 <span class="inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold" :class="estadoClase(c.estado)">
@@ -235,7 +235,7 @@ function formatDate(dateStr) {
                         <div class="text-center mb-5 w-full">
                             <h2 class="text-xl font-bold" :style="{ color: 'var(--color-text)' }">{{ qrData.label }}</h2>
                             <div class="text-4xl font-black mt-1 tracking-tight" :style="{ color: 'var(--color-primary)' }">
-                                Bs. {{ formatInt(qrData.amount) }}
+                                Bs. {{ Number(qrData.amount).toFixed(2) }}
                             </div>
                         </div>
 

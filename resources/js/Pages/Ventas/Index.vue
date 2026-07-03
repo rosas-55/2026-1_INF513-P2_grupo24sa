@@ -74,7 +74,7 @@ function formatDate(dateStr) {
                             <td class="font-medium text-primary">#{{ v.id }}</td>
                             <td>{{ v.cliente?.name }}</td>
                             <td>{{ v.tipo }}</td>
-                            <td class="font-semibold">Bs. {{ formatInt(v.total) }}</td>
+                            <td class="font-semibold">Bs. {{ Number(v.total).toFixed(2) }}</td>
                             <td>
                                 <span class="badge-primary" :class="{'alert-success px-2 py-1 rounded': v.estado === 'PAGADA', 'alert-warning px-2 py-1 rounded': v.estado === 'PENDIENTE'}">
                                     {{ v.estado }}

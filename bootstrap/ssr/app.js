@@ -674,7 +674,7 @@ createInertiaApp({
 		"./Pages/Compras/Create.vue": () => import("./assets/Create-CarQbuAC.js"),
 		"./Pages/Compras/Index.vue": () => import("./assets/Index-BHFzAA1c.js"),
 		"./Pages/Compras/Show.vue": () => import("./assets/Show-B4ppvaGn.js"),
-		"./Pages/Cuotas/Index.vue": () => import("./assets/Index-CmQIg9GG.js"),
+		"./Pages/Cuotas/Index.vue": () => import("./assets/Index-FW7jpmd1.js"),
 		"./Pages/Dashboard.vue": () => import("./assets/Dashboard-zjHp-xVJ.js"),
 		"./Pages/Insumos/Create.vue": () => import("./assets/Create-BNOycTaf.js"),
 		"./Pages/Insumos/Edit.vue": () => import("./assets/Edit-D63hY2Fh.js"),
@@ -701,9 +701,9 @@ createInertiaApp({
 		"./Pages/Usuarios/Create.vue": () => import("./assets/Create-B41dffr1.js"),
 		"./Pages/Usuarios/Edit.vue": () => import("./assets/Edit-BKz3CI7v.js"),
 		"./Pages/Usuarios/Index.vue": () => import("./assets/Index-10G2nuPy2.js"),
-		"./Pages/Ventas/Create.vue": () => import("./assets/Create-Ckc7IWc4.js"),
-		"./Pages/Ventas/Index.vue": () => import("./assets/Index-Dk3jaTar.js"),
-		"./Pages/Ventas/Show.vue": () => import("./assets/Show-mcmKcGJ8.js"),
+		"./Pages/Ventas/Create.vue": () => import("./assets/Create-Bi3rEEKJ.js"),
+		"./Pages/Ventas/Index.vue": () => import("./assets/Index-1kxRqLsp.js"),
+		"./Pages/Ventas/Show.vue": () => import("./assets/Show-L3HP5yld.js"),
 		"./Pages/Welcome.vue": () => import("./assets/Welcome-Cfrki-DF.js")
 	})),
 	setup({ el, App, props, plugin }) {

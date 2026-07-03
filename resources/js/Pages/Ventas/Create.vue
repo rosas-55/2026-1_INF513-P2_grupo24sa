@@ -220,18 +220,18 @@ function formatInt(amount) {
                                     <select :id="`det-producto-${i}`" v-model="d.producto_id" required class="w-full theme-input text-sm px-2 py-1.5">
                                         <option value="">Seleccione un producto…</option>
                                         <option v-for="p in productos" :key="p.id" :value="p.id">
-                                            {{ p.nombre }} — Bs. {{ formatInt(p.precio_venta) }} (Stock: {{ p.stock_actual }})
+                                            {{ p.nombre }} — Bs. {{ Number(p.precio_venta).toFixed(2) }} (Stock: {{ p.stock_actual }})
                                         </option>
                                     </select>
                                 </div>
                                 <div class="sm:col-span-3">
                                     <label :for="`det-cantidad-${i}`" class="block text-xs font-medium mb-1 text-muted">Cantidad</label>
-                                    <input :id="`det-cantidad-${i}`" v-model.number="d.cantidad" type="number" step="0.01" min="0.01" required class="w-full theme-input text-sm px-2 py-1.5" />
+                                    <input :id="`det-cantidad-${i}`" v-model.number="d.cantidad" type="number" step="1" min="1" required class="w-full theme-input text-sm px-2 py-1.5" />
                                 </div>
                                 <div class="sm:col-span-2 flex flex-col justify-end h-full">
                                     <span class="text-xs font-medium mb-1 text-muted">Subtotal</span>
                                     <span class="text-sm font-semibold whitespace-nowrap text-primary">
-                                        Bs. {{ formatInt(getSubtotal(d)) }}
+                                        Bs. {{ getSubtotal(d).toFixed(2) }}
                                     </span>
                                 </div>
                                 <div class="sm:col-span-1 flex justify-end sm:justify-center items-end h-full pb-1">
@@ -247,9 +247,9 @@ function formatInt(amount) {
 
                         <div class="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3 pt-4 mt-6 border-t theme-divider">
                             <div class="text-sm text-muted">
-                                Total estimado: <strong class="text-primary text-lg">Bs. {{ formatInt(totalEstimado) }}</strong>
+                                Total estimado: <strong class="text-primary text-lg">Bs. {{ totalEstimado.toFixed(2) }}</strong>
                                 <span v-if="form.tipo === 'CREDITO' && form.nro_cuotas > 1">
-                                    &middot; {{ form.nro_cuotas }} cuotas de Bs. {{ formatInt(totalEstimado / form.nro_cuotas) }}
+                                    &middot; {{ form.nro_cuotas }} cuotas de Bs. {{ (totalEstimado / form.nro_cuotas).toFixed(2) }}
                                 </span>
                             </div>
                             <div class="flex flex-col sm:flex-row gap-3">
@@ -350,7 +350,7 @@ function formatInt(amount) {
                         <div class="text-center mb-5 w-full">
                             <h2 class="text-xl font-bold theme-section-title">{{ qrData.label }}</h2>
                             <div class="text-4xl font-black mt-1 tracking-tight text-primary">
-                                Bs. {{ formatInt(qrData.amount) }}
+                                Bs. {{ Number(qrData.amount).toFixed(2) }}
                             </div>
                         </div>
 
