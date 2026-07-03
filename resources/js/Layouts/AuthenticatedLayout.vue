@@ -141,7 +141,7 @@ const showingNavigationDropdown = ref(false);
                         class="hidden border-t sm:block"
                         :style="{ borderColor: 'var(--color-border-light)' }"
                     >
-                        <div class="nav-menu-row overflow-x-auto">
+                        <div class="nav-menu-row w-full">
                             <DynamicMenu />
                         </div>
                     </div>

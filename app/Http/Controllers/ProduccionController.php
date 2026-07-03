@@ -47,7 +47,7 @@ class ProduccionController extends Controller
         ]);
 
         DB::transaction(function () use ($data) {
-            $produccion = Produccion::create($data);
+            $produccion = Produccion::create(array_merge($data, ['fecha' => now()]));
 
             // Incrementar stock del producto asociado a la receta
             $receta = Receta::with('producto')->find($data['receta_id']);

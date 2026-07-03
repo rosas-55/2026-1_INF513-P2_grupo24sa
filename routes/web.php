@@ -145,6 +145,9 @@ Route::middleware(['auth', 'role:PROPIETARIO'])->group(function () {
     Route::patch('/seguridad/roles/{role}/modulos', [SeguridadController::class, 'updateRoleModulos'])->name('seguridad.role.modulos');
     Route::patch('/seguridad/usuarios/{usuario}/roles', [SeguridadController::class, 'updateUserRoles'])->name('seguridad.user.roles');
 
+    // Usuarios (CRUD)
+    Route::resource('usuarios', \App\Http\Controllers\UsuarioController::class)->except(['show']);
+
     // Bitácora
     Route::get('/bitacora', [BitacoraController::class, 'index'])->name('bitacora.index');
 
@@ -159,6 +162,36 @@ Route::middleware(['auth', 'role:PROPIETARIO'])->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/api/tema', [TemaController::class, 'show'])->name('tema.show');
     Route::patch('/api/tema', [TemaController::class, 'update'])->name('tema.update');
+    
+    Route::get('/api/debug-menu', function(\Illuminate\Http\Request $request) {
+        $user = \App\Models\User::where('name', 'Propietario')->first();
+        if (!$user) return response()->json(['error' => 'not found']);
+        
+        $roleIds = $user->roles()->pluck('role_id');
+        $modulos = \App\Models\Modulo::query()
+            ->select(['modulo.id', 'modulo.name', 'modulo.codigo', 'modulo.nivel'])
+            ->join('role_modulo', 'modulo.id', '=', 'role_modulo.modulo_id')
+            ->whereIn('role_modulo.role_id', $roleIds)
+            ->where('modulo.estado', 'ACTIVO')
+            ->orderBy('modulo.nivel')
+            ->orderBy('modulo.id')
+            ->get();
+            
+        $middleware = new \App\Http\Middleware\HandleInertiaRequests();
+        $reflection = new \ReflectionClass($middleware);
+        $method = $reflection->getMethod('getMenu');
+        $method->setAccessible(true);
+        
+        $fakeRequest = \Illuminate\Http\Request::create('/dashboard', 'GET');
+        $fakeRequest->setUserResolver(function() use ($user) { return $user; });
+        
+        $menu = $method->invoke($middleware, $fakeRequest);
+        
+        return response()->json([
+            'raw_modulos' => $modulos,
+            'processed_menu' => $menu
+        ]);
+    });
 });
 
 // ═══════════════════════════════════════════════════════════

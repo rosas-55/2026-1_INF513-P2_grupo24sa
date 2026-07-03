@@ -27,63 +27,66 @@ const iconPaths = {
     'shield-check': 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zm-2-7l2 2 4-4',
     'bar-chart-3': 'M18 20V10M12 20V4M6 20v-6',
     'scroll-text': 'M8 21h12a2 2 0 002-2v-2H10v2a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-2h2v2a2 2 0 002 2zm0-14H4a2 2 0 00-2 2v2h8V7zM8 7a2 2 0 012-2h8a2 2 0 012 2v14H8V7zm4 6h4m-4 4h4m-4-8h4',
+    'users': 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
     'circle': 'M12 22a10 10 0 100-20 10 10 0 000 20z',
 };
 </script>
 
 <template>
     <!-- Desktop: barra horizontal completa (row 2 del nav) -->
-    <div v-if="!mobile && menu.length" class="hidden sm:flex sm:items-center sm:gap-x-0.5 sm:py-1">
-        <NavLink
-            v-for="item in menu"
-            :key="item.route"
-            :href="route(item.route)"
-            :active="route().current(item.route)"
-        >
-            <span class="flex items-center gap-1.5">
-                <!-- Icono SVG (aria-hidden: decorativo) -->
-                <svg
-                    v-if="item.icon && iconPaths[item.icon]"
-                    class="h-3.5 w-3.5 shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                >
-                    <path :d="iconPaths[item.icon]" />
-                </svg>
-                {{ item.name }}
-            </span>
-        </NavLink>
+    <div v-if="!mobile && menu.length" class="hidden sm:flex sm:items-center sm:gap-x-2 sm:gap-y-1 sm:py-2 sm:flex-wrap">
+        <template v-for="item in menu" :key="item.route">
+            <NavLink
+                v-if="route().has(item.route)"
+                :href="route(item.route)"
+                :active="route().current(item.route)"
+            >
+                <span class="flex items-center gap-1.5">
+                    <!-- Icono SVG (aria-hidden: decorativo) -->
+                    <svg
+                        v-if="item.icon && iconPaths[item.icon]"
+                        class="h-3.5 w-3.5 shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path :d="iconPaths[item.icon]" />
+                    </svg>
+                    {{ item.name }}
+                </span>
+            </NavLink>
+        </template>
     </div>
 
     <!-- Mobile: vertical list inside hamburger -->
     <template v-if="mobile && menu.length">
-        <ResponsiveNavLink
-            v-for="item in menu"
-            :key="item.route"
-            :href="route(item.route)"
-            :active="route().current(item.route)"
-        >
-            <span class="flex items-center gap-2">
-                <svg
-                    v-if="item.icon && iconPaths[item.icon]"
-                    class="h-4 w-4 shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                >
-                    <path :d="iconPaths[item.icon]" />
-                </svg>
-                {{ item.name }}
-            </span>
-        </ResponsiveNavLink>
+        <template v-for="item in menu" :key="item.route">
+            <ResponsiveNavLink
+                v-if="route().has(item.route)"
+                :href="route(item.route)"
+                :active="route().current(item.route)"
+            >
+                <span class="flex items-center gap-2">
+                    <svg
+                        v-if="item.icon && iconPaths[item.icon]"
+                        class="h-4 w-4 shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path :d="iconPaths[item.icon]" />
+                    </svg>
+                    {{ item.name }}
+                </span>
+            </ResponsiveNavLink>
+        </template>
     </template>
 </template>

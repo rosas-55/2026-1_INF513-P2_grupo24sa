@@ -14,16 +14,16 @@
     "/inf513/grupo24sa/proyecto2/build/assets/DeleteUserForm-BGBLKwF1.js"
   ],
   "resources/js/Components/Dropdown.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-Bc0t65_s.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
   ],
   "resources/js/Components/DropdownLink.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-Bc0t65_s.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
   ],
   "resources/js/Components/DynamicMenu.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-Bc0t65_s.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
   ],
   "resources/js/Components/GlobalSearch.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-Bc0t65_s.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
   ],
   "resources/js/Components/InputError.vue": [
     "/inf513/grupo24sa/proyecto2/build/assets/TextInput-BqeOumt3.js"
@@ -35,13 +35,13 @@
     "/inf513/grupo24sa/proyecto2/build/assets/DeleteUserForm-BGBLKwF1.js"
   ],
   "resources/js/Components/NavLink.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-Bc0t65_s.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
   ],
   "resources/js/Components/PrimaryButton.vue": [
     "/inf513/grupo24sa/proyecto2/build/assets/PrimaryButton-be5gxiiU.js"
   ],
   "resources/js/Components/ResponsiveNavLink.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-Bc0t65_s.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
   ],
   "resources/js/Components/SecondaryButton.vue": [
     "/inf513/grupo24sa/proyecto2/build/assets/DeleteUserForm-BGBLKwF1.js"
@@ -50,10 +50,10 @@
     "/inf513/grupo24sa/proyecto2/build/assets/TextInput-BqeOumt3.js"
   ],
   "resources/js/Components/ThemeSwitcher.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-Bc0t65_s.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
   ],
   "resources/js/Layouts/AuthenticatedLayout.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-Bc0t65_s.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
   ],
   "resources/js/Layouts/GuestLayout.vue": [
     "/inf513/grupo24sa/proyecto2/build/assets/GuestLayout-T9SRmEee.js"
@@ -77,55 +77,55 @@
     "/inf513/grupo24sa/proyecto2/build/assets/VerifyEmail-DdRaE4WC.js"
   ],
   "resources/js/Pages/Bitacora/Index.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Index-D986NTTS.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-B4ydy3u4.js"
   ],
   "resources/js/Pages/Compras/Create.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Create-DNwyhNsg.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-CarQbuAC.js"
   ],
   "resources/js/Pages/Compras/Index.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Index-BxOcWjQo.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-BHFzAA1c.js"
   ],
   "resources/js/Pages/Compras/Show.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Show-DEIKWciv.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Show-B4ppvaGn.js"
   ],
   "resources/js/Pages/Cuotas/Index.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Index-DzVLuJU0.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-Dqkq4yyL.js"
   ],
   "resources/js/Pages/Dashboard.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Dashboard-LWhokXdg.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Dashboard-zjHp-xVJ.js"
   ],
   "resources/js/Pages/Insumos/Create.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Create-CGdlXcPi.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-BNOycTaf.js"
   ],
   "resources/js/Pages/Insumos/Edit.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Edit-B4OXLaLw.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Edit-D63hY2Fh.js"
   ],
   "resources/js/Pages/Insumos/Index.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Index-sr8zE8-1.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-uHBRRaZw.js"
   ],
   "resources/js/Pages/Inventario/Create.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Create-BrFNUQob.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-PsH3QXY9.js"
   ],
   "resources/js/Pages/Inventario/Index.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Index-mOXua5nk.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-B8wRnfS8.js"
   ],
   "resources/js/Pages/Produccion/Create.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Create-B19oU0vC.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-BKdpTTf4.js"
   ],
   "resources/js/Pages/Produccion/Index.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Index-Cj10OaJa.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-qPtiv11W.js"
   ],
   "resources/js/Pages/Productos/Create.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Create-DNX_tskz.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-BjwXGj4S.js"
   ],
   "resources/js/Pages/Productos/Edit.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Edit-sWNtVIel.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Edit-DC6uTUd-.js"
   ],
   "resources/js/Pages/Productos/Index.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Index-Cz7_nUNc.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-XEjcR--_.js"
   ],
   "resources/js/Pages/Profile/Edit.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Edit-PbISO_o6.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Edit-qh1u9sHO.js"
   ],
   "resources/js/Pages/Profile/Partials/DeleteUserForm.vue": [
     "/inf513/grupo24sa/proyecto2/build/assets/DeleteUserForm-BGBLKwF1.js"
@@ -137,37 +137,46 @@
     "/inf513/grupo24sa/proyecto2/build/assets/UpdateProfileInformationForm-Dc_Hfu46.js"
   ],
   "resources/js/Pages/Proveedores/Create.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Create-CplEsxov.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-B0xJx0AN.js"
   ],
   "resources/js/Pages/Proveedores/Edit.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Edit-CIkpGiRq.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Edit-ZiK4MDbT.js"
   ],
   "resources/js/Pages/Proveedores/Index.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Index-CTRRK4ID.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-CgWOzsbR.js"
   ],
   "resources/js/Pages/Recetas/Create.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Create-lBh8g0Dh.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-wRN8-HFa.js"
   ],
   "resources/js/Pages/Recetas/Edit.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Edit-DFJ8I0xg.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Edit-14LkYlrx.js"
   ],
   "resources/js/Pages/Recetas/Index.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Index-UN9ku4xg.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-N1FbLDgJ.js"
   ],
   "resources/js/Pages/Reportes/Index.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Index-CA1f47O42.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-BrvVHQrK2.js"
   ],
   "resources/js/Pages/Seguridad/Index.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Index-Deub8wo0.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-BkJocM1z.js"
+  ],
+  "resources/js/Pages/Usuarios/Create.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-B41dffr1.js"
+  ],
+  "resources/js/Pages/Usuarios/Edit.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Edit-BKz3CI7v.js"
+  ],
+  "resources/js/Pages/Usuarios/Index.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-10G2nuPy2.js"
   ],
   "resources/js/Pages/Ventas/Create.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Create-Dmoki6PG.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-DjTHSRRJ.js"
   ],
   "resources/js/Pages/Ventas/Index.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Index-V7N5Z8xd.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-DCF6ts2k.js"
   ],
   "resources/js/Pages/Ventas/Show.vue": [
-    "/inf513/grupo24sa/proyecto2/build/assets/Show-B-fotGhS.js"
+    "/inf513/grupo24sa/proyecto2/build/assets/Show-CXW1DAat.js"
   ],
   "resources/js/Pages/Welcome.vue": [
     "/inf513/grupo24sa/proyecto2/build/assets/Welcome-Cfrki-DF.js"

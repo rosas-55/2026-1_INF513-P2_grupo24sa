@@ -55,7 +55,7 @@ class InventarioController extends Controller
 
         $data['valor_total'] = $data['cantidad'] * $data['costo_unitario'];
 
-        Inventario::create($data);
+        Inventario::create(array_merge($data, ['fecha' => now()]));
 
         // Actualizar stock del insumo
         $insumo = Insumo::find($data['insumo_id']);

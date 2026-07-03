@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue';
-import { usePage } from '@inertiajs/vue3';
+import { usePage, router } from '@inertiajs/vue3';
 import axios from 'axios';
 
 // ── Estado local ──────────────────────────────────────────
@@ -41,28 +41,18 @@ function aplicarAlDom() {
 }
 
 // ── Guardar en backend ────────────────────────────────────
-async function guardarPreferencias() {
+function guardarPreferencias() {
     guardando.value = true;
-    try {
-        await axios.patch('/api/tema', {
-            tema: tema.value,
-            modo: modo.value,
-            tamano_letra: tamanoLetra.value,
-            alto_contraste: altoContraste.value,
-        });
-
-        // Actualizar el prop compartido para que persista entre navegaciones
-        usePage().props.tema = {
-            tema: tema.value,
-            modo: modo.value,
-            tamano_letra: tamanoLetra.value,
-            alto_contraste: altoContraste.value,
-        };
-    } catch (e) {
-        // Silencioso — el cambio visual ya se aplicó
-    } finally {
-        guardando.value = false;
-    }
+    router.patch(route('tema.update'), {
+        tema: tema.value,
+        modo: modo.value,
+        tamano_letra: tamanoLetra.value,
+        alto_contraste: altoContraste.value,
+    }, {
+        preserveState: true,
+        preserveScroll: true,
+        onFinish: () => guardando.value = false,
+    });
 }
 
 // ── Cerrar al hacer click fuera ────────────────────────────

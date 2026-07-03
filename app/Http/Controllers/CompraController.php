@@ -62,6 +62,7 @@ class CompraController extends Controller
                 'proveedor_id' => $data['proveedor_id'],
                 'estado'       => $data['estado'],
                 'total'        => $total,
+                'fecha'        => now(),
             ]);
 
             foreach ($data['detalles'] as $det) {

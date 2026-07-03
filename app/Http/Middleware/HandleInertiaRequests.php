@@ -41,7 +41,7 @@ class HandleInertiaRequests extends Middleware
             'menu'    => fn () => $this->getMenu($request),
             'permisos' => fn () => $this->getPermisos($request),
             'tema'    => fn () => $this->getTema($request),
-            'visitas' => $request->attributes->get('visitas', 0),
+            'visitas' => fn () => $request->attributes->get('visitas', 0),
             'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
@@ -68,26 +68,24 @@ class HandleInertiaRequests extends Middleware
 
         $roleIds = $user->roles()->pluck('role_id');
 
-        return Cache::remember(
-            "menu:user:{$user->id}",
-            now()->addMinutes(30),
-            function () use ($roleIds) {
-                $modulos = Modulo::query()
-                    ->select(['modulo.id', 'modulo.name', 'modulo.codigo', 'modulo.nivel'])
-                    ->join('role_modulo', 'modulo.id', '=', 'role_modulo.modulo_id')
-                    ->whereIn('role_modulo.role_id', $roleIds)
-                    ->where('modulo.estado', 'ACTIVO')
-                    ->orderBy('modulo.nivel')
-                    ->orderBy('modulo.id')
-                    ->get();
+        $modulos = Modulo::query()
+            ->select(['modulo.id', 'modulo.name', 'modulo.codigo', 'modulo.nivel'])
+            ->join('role_modulo', 'modulo.id', '=', 'role_modulo.modulo_id')
+            ->whereIn('role_modulo.role_id', $roleIds)
+            ->where('modulo.estado', 'ACTIVO')
+            ->orderBy('modulo.nivel')
+            ->orderBy('modulo.id')
+            ->get();
 
-                return $modulos->map(fn (Modulo $m) => [
-                    'name'  => $m->name,
-                    'route' => $this->codigoToRoute($m->codigo),
-                    'icon'  => $this->codigoToIcon($m->codigo),
-                ])->toArray();
-            }
-        );
+        $menu = $modulos->map(fn (Modulo $m) => [
+            'name'  => $m->name,
+            'route' => $this->codigoToRoute($m->codigo),
+            'icon'  => $this->codigoToIcon($m->codigo),
+        ])->toArray();
+
+        \Illuminate\Support\Facades\Log::info('Menu for user ' . $user->id . ':', $menu);
+
+        return $menu;
     }
 
     // ═══════════════════════════════════════════════════════════
@@ -186,6 +184,7 @@ class HandleInertiaRequests extends Middleware
             'PRODUCCION'  => 'produccion.index',
             'VENTAS'      => 'ventas.index',
             'CUOTAS'      => 'cuotas.index',
+            'USUARIOS'    => 'usuarios.index',
             'SEGURIDAD'   => 'seguridad.index',
             'REPORTES'    => 'reportes.index',
             'BITACORA'    => 'bitacora.index',
@@ -207,6 +206,7 @@ class HandleInertiaRequests extends Middleware
             'PRODUCCION'  => 'factory',
             'VENTAS'      => 'receipt',
             'CUOTAS'      => 'credit-card',
+            'USUARIOS'    => 'users',
             'SEGURIDAD'   => 'shield-check',
             'REPORTES'    => 'bar-chart-3',
             'BITACORA'    => 'scroll-text',

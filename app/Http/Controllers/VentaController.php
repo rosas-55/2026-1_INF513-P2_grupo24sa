@@ -223,15 +223,19 @@ class VentaController extends Controller
             return Redirect::back()->with('error', 'Solo se pueden eliminar ventas pendientes.');
         }
 
-        DB::transaction(function () use ($ventum) {
-            // Fix: acceso de propiedad en modelos Eloquent, no de array
-            foreach ($ventum->detalles as $det) {
-                Producto::where('id', $det->producto_id)->increment('stock_actual', $det->cantidad);
-            }
-            $ventum->cuotas()->delete();
-            $ventum->detalles()->delete();
-            $ventum->delete();
-        });
+        try {
+            DB::transaction(function () use ($ventum) {
+                // Fix: acceso de propiedad en modelos Eloquent, no de array
+                foreach ($ventum->detalles as $det) {
+                    Producto::where('id', $det->producto_id)->increment('stock_actual', $det->cantidad);
+                }
+                $ventum->cuotas()->delete();
+                $ventum->detalles()->delete();
+                $ventum->delete();
+            });
+        } catch (\Throwable $e) {
+            return Redirect::back()->with('error', 'Error al eliminar la venta: ' . $e->getMessage());
+        }
 
         return Redirect::route('ventas.index')->with('success', 'Venta eliminada.');
     }
@@ -338,6 +342,7 @@ class VentaController extends Controller
             'nro_cuotas'  => $nroCuotas,
             'interes'     => $data['interes'] ?? 0,
             'total'       => $total,
+            'fecha'       => now(),
         ]);
 
         foreach ($detProc as $det) {

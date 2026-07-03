@@ -39,12 +39,12 @@ class TemaController extends Controller
     /**
      * Guardar/actualizar las preferencias de tema del usuario.
      */
-    public function update(Request $request): JsonResponse
+    public function update(Request $request): \Illuminate\Http\RedirectResponse
     {
         $user = $request->user();
 
         if (! $user) {
-            return response()->json(['message' => 'No autenticado'], 401);
+            return back();
         }
 
         $validated = $request->validate([
@@ -55,7 +55,7 @@ class TemaController extends Controller
         ]);
 
         if (empty($validated)) {
-            return response()->json(['message' => 'Sin cambios'], 200);
+            return back();
         }
 
         $tema = TemaUsuario::updateOrCreate(
@@ -67,14 +67,6 @@ class TemaController extends Controller
         Cache::forget("menu:user:{$user->id}");
         Cache::forget("permisos:user:{$user->id}");
 
-        return response()->json([
-            'message' => 'Tema actualizado',
-            'tema'    => [
-                'tema'           => $tema->tema,
-                'modo'           => $tema->modo,
-                'tamano_letra'   => $tema->tamano_letra,
-                'alto_contraste' => (bool) $tema->alto_contraste,
-            ],
-        ]);
+        return back();
     }
 }
