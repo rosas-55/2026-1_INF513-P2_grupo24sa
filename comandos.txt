@@ -1,0 +1,35 @@
+
+# === COMANDOS EN EL SERVIDOR (en orden) ===
+# Conectarse: ssh grupo24sa@tecnoweb.org.bo
+
+# 1. Clonar el repo (solo la primera vez)
+cd ~
+git clone https://github.com/rosas-55/2026-1_INF513-P2_grupo24sa.git proyecto2_laravel
+
+# 2. Instalar dependencias PHP  (NO se necesita npm/node en el servidor)
+#    Los assets JS/CSS ya vienen compilados en public/build/ desde git
+cd ~/proyecto2_laravel
+composer install --no-dev --optimize-autoloader
+
+# 3. Configurar entorno
+cp .env.example .env
+vi .env
+# Editar: APP_URL, DB_HOST, DB_DATABASE, DB_USERNAME, DB_PASSWORD (dejar APP_KEY vacio)
+php artisan key:generate
+
+# 5. Permisos y optimizacion
+chmod -R 775 storage bootstrap/cache
+php artisan config:cache
+php artisan route:cache
+
+# 6. Crear symlink (public/ queda accesible como ~/proyecto2 en la web)
+ln -s ~/proyecto2_laravel/public ~/proyecto2
+
+# === ACTUALIZAR DESPUES DE CAMBIOS (git push desde tu PC) ===
+cd ~/proyecto2_laravel
+git pull origin main
+composer install --no-dev --optimize-autoloader
+php artisan optimize:clear
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
