@@ -1,0 +1,187 @@
+{
+  "\u0000plugin-vue:export-helper": [
+    "/inf513/grupo24sa/proyecto2/build/assets/_plugin-vue_export-helper-BOaGB7Aw.js"
+  ],
+  "node_modules/laravel-vite-plugin/inertia-helpers/index.js": [],
+  "resources/css/app.css": [],
+  "resources/js/Components/ApplicationLogo.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/ApplicationLogo-oaRXtDJB.js"
+  ],
+  "resources/js/Components/Checkbox.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Login-BhRwuDlu.js"
+  ],
+  "resources/js/Components/DangerButton.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/DeleteUserForm-BGBLKwF1.js"
+  ],
+  "resources/js/Components/Dropdown.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
+  ],
+  "resources/js/Components/DropdownLink.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
+  ],
+  "resources/js/Components/DynamicMenu.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
+  ],
+  "resources/js/Components/GlobalSearch.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
+  ],
+  "resources/js/Components/InputError.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/TextInput-BqeOumt3.js"
+  ],
+  "resources/js/Components/InputLabel.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/TextInput-BqeOumt3.js"
+  ],
+  "resources/js/Components/Modal.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/DeleteUserForm-BGBLKwF1.js"
+  ],
+  "resources/js/Components/NavLink.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
+  ],
+  "resources/js/Components/PrimaryButton.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/PrimaryButton-be5gxiiU.js"
+  ],
+  "resources/js/Components/ResponsiveNavLink.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
+  ],
+  "resources/js/Components/SecondaryButton.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/DeleteUserForm-BGBLKwF1.js"
+  ],
+  "resources/js/Components/TextInput.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/TextInput-BqeOumt3.js"
+  ],
+  "resources/js/Components/ThemeSwitcher.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
+  ],
+  "resources/js/Layouts/AuthenticatedLayout.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/AuthenticatedLayout-C169eF-m.js"
+  ],
+  "resources/js/Layouts/GuestLayout.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/GuestLayout-T9SRmEee.js"
+  ],
+  "resources/js/Pages/Auth/ConfirmPassword.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/ConfirmPassword-DA6Pe7Pj.js"
+  ],
+  "resources/js/Pages/Auth/ForgotPassword.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/ForgotPassword-CEfTM1w0.js"
+  ],
+  "resources/js/Pages/Auth/Login.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Login-BhRwuDlu.js"
+  ],
+  "resources/js/Pages/Auth/Register.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Register-CFH8g5eB.js"
+  ],
+  "resources/js/Pages/Auth/ResetPassword.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/ResetPassword-ChdgapNt.js"
+  ],
+  "resources/js/Pages/Auth/VerifyEmail.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/VerifyEmail-DdRaE4WC.js"
+  ],
+  "resources/js/Pages/Bitacora/Index.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-B4ydy3u4.js"
+  ],
+  "resources/js/Pages/Compras/Create.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-CED8_l7Z.js"
+  ],
+  "resources/js/Pages/Compras/Index.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-CO2UVXMp.js"
+  ],
+  "resources/js/Pages/Compras/Show.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Show-CXuBTSyl.js"
+  ],
+  "resources/js/Pages/Cuotas/Index.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-FW7jpmd1.js"
+  ],
+  "resources/js/Pages/Dashboard.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Dashboard-zjHp-xVJ.js"
+  ],
+  "resources/js/Pages/Insumos/Create.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-DTpzZcYo.js"
+  ],
+  "resources/js/Pages/Insumos/Edit.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Edit-yBX0pjUO.js"
+  ],
+  "resources/js/Pages/Insumos/Index.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-uHBRRaZw.js"
+  ],
+  "resources/js/Pages/Inventario/Create.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-BzkUyXT7.js"
+  ],
+  "resources/js/Pages/Inventario/Index.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-CFjlLVcI.js"
+  ],
+  "resources/js/Pages/Produccion/Create.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-B51TjYGG.js"
+  ],
+  "resources/js/Pages/Produccion/Index.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-kMJOlRjt.js"
+  ],
+  "resources/js/Pages/Productos/Create.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-C3_qRiJj.js"
+  ],
+  "resources/js/Pages/Productos/Edit.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Edit-CIEJT4k4.js"
+  ],
+  "resources/js/Pages/Productos/Index.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-XEjcR--_.js"
+  ],
+  "resources/js/Pages/Profile/Edit.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Edit-qh1u9sHO.js"
+  ],
+  "resources/js/Pages/Profile/Partials/DeleteUserForm.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/DeleteUserForm-BGBLKwF1.js"
+  ],
+  "resources/js/Pages/Profile/Partials/UpdatePasswordForm.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/UpdatePasswordForm-C-z7oWnb.js"
+  ],
+  "resources/js/Pages/Profile/Partials/UpdateProfileInformationForm.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/UpdateProfileInformationForm-Dc_Hfu46.js"
+  ],
+  "resources/js/Pages/Proveedores/Create.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-B0xJx0AN.js"
+  ],
+  "resources/js/Pages/Proveedores/Edit.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Edit-ZiK4MDbT.js"
+  ],
+  "resources/js/Pages/Proveedores/Index.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-CgWOzsbR.js"
+  ],
+  "resources/js/Pages/Recetas/Create.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-wRN8-HFa.js"
+  ],
+  "resources/js/Pages/Recetas/Edit.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Edit-14LkYlrx.js"
+  ],
+  "resources/js/Pages/Recetas/Index.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-N1FbLDgJ.js"
+  ],
+  "resources/js/Pages/Reportes/Index.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-tZGA913F2.js"
+  ],
+  "resources/js/Pages/Seguridad/Index.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-BkJocM1z.js"
+  ],
+  "resources/js/Pages/Usuarios/Create.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-B41dffr1.js"
+  ],
+  "resources/js/Pages/Usuarios/Edit.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Edit-BKz3CI7v.js"
+  ],
+  "resources/js/Pages/Usuarios/Index.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-10G2nuPy2.js"
+  ],
+  "resources/js/Pages/Ventas/Create.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Create-Ci86zbPG.js"
+  ],
+  "resources/js/Pages/Ventas/Index.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Index-1kxRqLsp.js"
+  ],
+  "resources/js/Pages/Ventas/Show.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Show-L3HP5yld.js"
+  ],
+  "resources/js/Pages/Welcome.vue": [
+    "/inf513/grupo24sa/proyecto2/build/assets/Welcome-Cfrki-DF.js"
+  ],
+  "resources/js/app.js": [],
+  "resources/js/bootstrap.js": [],
+  "vendor/tightenco/ziggy/dist/index.esm.js": []
+}
